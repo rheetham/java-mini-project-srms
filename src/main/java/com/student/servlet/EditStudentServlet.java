@@ -2,36 +2,46 @@ package com.student.servlet;
 
 import com.student.dao.StudentDAO;
 import com.student.model.Student;
-import java.io.IOException;
-import java.sql.Date;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.sql.Date;
 
 @WebServlet("/EditStudentServlet")
 public class EditStudentServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         
         try {
-            int id = Integer.parseInt(request.getParameter("id"));
+            String idParam = request.getParameter("id");
+            if (idParam == null || idParam.isEmpty()) {
+                throw new IllegalArgumentException("Student ID is required");
+            }
+            
+            int id = Integer.parseInt(idParam);
             StudentDAO studentDAO = new StudentDAO();
             Student student = studentDAO.getStudentById(id);
             
-            if (student != null) {
-                request.setAttribute("student", student);
-                request.getRequestDispatcher("editStudent.jsp").forward(request, response);
-            } else {
-                request.getSession().setAttribute("message", "Student not found!");
-                request.getSession().setAttribute("messageType", "error");
+            if (student == null) {
+                request.getSession().setAttribute("error", "No student found with ID: " + id);
                 response.sendRedirect("ViewStudentsServlet");
+                return;
             }
+            
+            request.setAttribute("student", student);
+            request.getRequestDispatcher("editStudent.jsp").forward(request, response);
+            
+        } catch (NumberFormatException e) {
+            request.getSession().setAttribute("error", "Invalid student ID format");
+            response.sendRedirect("ViewStudentsServlet");
         } catch (Exception e) {
             e.printStackTrace();
-            request.getSession().setAttribute("message", "Error: " + e.getMessage());
-            request.getSession().setAttribute("messageType", "error");
+            request.getSession().setAttribute("error", "Error: " + e.getMessage());
             response.sendRedirect("ViewStudentsServlet");
         }
     }
@@ -72,16 +82,13 @@ public class EditStudentServlet extends HttpServlet {
                 request.getSession().setAttribute("message", "Student updated successfully!");
                 request.getSession().setAttribute("messageType", "success");
             } else {
-                request.getSession().setAttribute("message", "Failed to update student!");
-                request.getSession().setAttribute("messageType", "error");
+                request.getSession().setAttribute("error", "Failed to update student!");
             }
-            response.sendRedirect("ViewStudentsServlet");
-            
         } catch (Exception e) {
             e.printStackTrace();
-            request.getSession().setAttribute("message", "Error: " + e.getMessage());
-            request.getSession().setAttribute("messageType", "error");
-            response.sendRedirect("ViewStudentsServlet");
+            request.getSession().setAttribute("error", "Error updating student: " + e.getMessage());
         }
+        
+        response.sendRedirect("ViewStudentsServlet");
     }
 }

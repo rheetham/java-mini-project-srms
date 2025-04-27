@@ -22,49 +22,60 @@
         </nav>
         
         <main>
-            <section class="student-list">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Roll No.</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Department</th>
-                            <th>Semester</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% 
-                        List<Student> students = (List<Student>) request.getAttribute("students");
-                        if (students != null && !students.isEmpty()) {
-                            for (Student student : students) { 
-                        %>
-                        <tr>
-                            <td><%= student.getId() %></td>
-                            <td><%= student.getRollNumber() %></td>
-                            <td><%= student.getFullName() %></td>
-                            <td><%= student.getEmail() %></td>
-                            <td><%= student.getDepartment() %></td>
-                            <td><%= student.getSemester() %></td>
-                            <td class="actions">
-                                <a href="editStudent.jsp?id=<%= student.getId() %>" class="btn-edit">Edit</a>
-                                <a href="DeleteStudentServlet?id=<%= student.getId() %>" class="btn-delete" 
-                                   onclick="return confirm('Are you sure you want to delete this student?')">Delete</a>
-                            </td>
-                        </tr>
-                        <% 
-                            }
-                        } else { 
-                        %>
-                        <tr>
-                            <td colspan="7" class="no-records">No student records found.</td>
-                        </tr>
-                        <% } %>
-                    </tbody>
-                </table>
-            </section>
+            <%
+                String message = (String) session.getAttribute("message");
+                String messageType = (String) session.getAttribute("messageType");
+                
+                if (message != null) {
+            %>
+                <div class="message <%= messageType %>">
+                    <%= message %>
+                </div>
+            <%
+                    session.removeAttribute("message");
+                    session.removeAttribute("messageType");
+                }
+                
+                List<Student> students = (List<Student>) request.getAttribute("students");
+                if (students != null && !students.isEmpty()) {
+            %>
+                <section class="student-list">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Roll No.</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Department</th>
+                                <th>Semester</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (Student student : students) { %>
+                            <tr>
+                                <td><%= student.getId() %></td>
+                                <td><%= student.getRollNumber() %></td>
+                                <td><%= student.getFullName() %></td>
+                                <td><%= student.getEmail() %></td>
+                                <td><%= student.getDepartment() %></td>
+                                <td><%= student.getSemester() %></td>
+                                <td class="actions">
+                                    <a href="EditStudentServlet?id=<%= student.getId() %>" class="btn-edit">Edit</a>
+                                    <a href="DeleteStudentServlet?id=<%= student.getId() %>" class="btn-delete" 
+                                       onclick="return confirm('Are you sure you want to delete this student?')">Delete</a>
+                                </td>
+                            </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </section>
+            <% } else { %>
+                <div class="no-records">
+                    <p>No student records found.</p>
+                </div>
+            <% } %>
         </main>
         
         <footer>
