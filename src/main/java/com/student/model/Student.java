@@ -120,6 +120,4 @@ public class Student {
 	public void setEnrollmentDate(Date enrollmentDate) {
 		this.enrollmentDate = enrollmentDate;
 	}
-    
-    // Add all getters and setters for the above properties
 }

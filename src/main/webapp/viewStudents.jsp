@@ -18,6 +18,7 @@
                 <li><a href="index.jsp">Home</a></li>
                 <li><a href="addStudent.jsp">Add Student</a></li>
                 <li><a href="ViewStudentsServlet">View Students</a></li>
+                <li><a href="LogoutServlet">Log Out</a></li>                
             </ul>
         </nav>
         
@@ -62,7 +63,7 @@
                                 <td><%= student.getDepartment() %></td>
                                 <td><%= student.getSemester() %></td>
                                 <td class="actions">
-                                    <a href="EditStudentServlet?id=<%= student.getId() %>" class="btn-edit">Edit</a>
+                                    <a href="EditStudentServlet?id=<%= student.getId() %>" class="btn-delete">Edit</a>
                                     <a href="DeleteStudentServlet?id=<%= student.getId() %>" class="btn-delete" 
                                        onclick="return confirm('Are you sure you want to delete this student?')">Delete</a>
                                 </td>
@@ -79,7 +80,7 @@
         </main>
         
         <footer>
-            <p>&copy; 2023 Student Record Management System</p>
+            <p>&copy; 2025 Student Record Management System</p>
         </footer>
     </div>
 </body>

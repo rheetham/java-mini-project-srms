@@ -77,7 +77,7 @@
         </main>
         
         <footer>
-            <p>&copy; 2023 Student Record Management System</p>
+            <p>&copy; 2025 Student Record Management System</p>
         </footer>
     </div>
 </body>

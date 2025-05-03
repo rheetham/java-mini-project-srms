@@ -17,6 +17,7 @@
                 <li><a href="index.jsp">Home</a></li>
                 <li><a href="addStudent.jsp">Add Student</a></li>
                 <li><a href="ViewStudentsServlet">View Students</a></li>
+                <li><a href="LogoutServlet">Log Out</a></li>
             </ul>
         </nav>
         
@@ -98,7 +99,7 @@
         </main>
         
         <footer>
-            <p>&copy; 2023 Student Record Management System</p>
+            <p>&copy; 2025 Student Record Management System</p>
         </footer>
     </div>
 </body>

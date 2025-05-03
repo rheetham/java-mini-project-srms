@@ -1,7 +1,5 @@
 @charset "UTF-8";
 
-@charset "UTF-8";
-/* Reset and base styles */
 * {
     margin: 0;
     padding: 0;
@@ -193,10 +191,7 @@ table tr:hover {
     transition: background-color 0.3s;
 }
 
-.btn-edit {
-    background-color: #3498db;
-    color: white;
-}
+
 
 .btn-edit:hover {
     background-color: #2980b9;
