@@ -5,12 +5,54 @@
 <head>
     <meta charset="UTF-8">
     <title>View Subjects</title>
+    <link rel="stylesheet" href="css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        header {
+    		width: 85vw;
+        	margin-top: 15px;
+        	border-radius: 10px;
+        }
+        
+        .head {
+        	width: 100vw;
+        	display: flex;
+        	flex-direction: column;
+        	align-items: center;
+        }
+        
+        nav {
+        	width: 85vw;
+        	border-radius: 10px;
+        }
+        
+        li {
+        	margin-top: 10px;
+        }
+		
+		ul {
+			margin-bottom: 5px;
+		}
         .action-btns { white-space: nowrap; }
     </style>
 </head>
 <body>
+	<div class="head">
+		<header>
+            <h1>Student Record Management System</h1>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a href="index.jsp">Home</a></li>
+                <li><a href="ViewStudentsServlet">Students</a></li>
+                <li><a href="TeacherServlet">Teachers</a></li>                
+                <li><a href="SubjectServlet">Subjects</a></li>
+                <li><a href="LogoutServlet">Log Out</a></li>
+
+            </ul>
+        </nav>
+    </div>
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2>Subject Management</h2>

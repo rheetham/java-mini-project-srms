@@ -6,6 +6,11 @@
     <meta charset="UTF-8">
     <title>View Students</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+    	header {
+        	margin-top: 15px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">

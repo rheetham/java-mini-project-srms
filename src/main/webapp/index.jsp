@@ -5,6 +5,19 @@
     <meta charset="UTF-8">
     <title>Student Record Management System</title>
     <link rel="stylesheet" href="css/style.css">
+        <style>
+        header {
+        	margin-top: 15px;
+        }
+    	section {
+    		height: 50vh;
+    		margin-bottom: 50px;
+    		display: flex;
+    		flex-direction: column;
+    		align-items: center;
+    		justify-content: center;
+    	}
+    </style>
 </head>
 <body>
     <div class="container">
@@ -15,8 +28,7 @@
         <nav>
             <ul>
                 <li><a href="index.jsp">Home</a></li>
-                <li><a href="addStudent.jsp">Add Student</a></li>
-                <li><a href="ViewStudentsServlet">View Students</a></li>
+                <li><a href="ViewStudentsServlet">Students</a></li>
                 <li><a href="TeacherServlet">Teachers</a></li>                
                 <li><a href="SubjectServlet">Subjects</a></li>
                 <li><a href="LogoutServlet">Log Out</a></li>
